@@ -20,7 +20,7 @@ namespace learnCSharp
             Pupil[] pupil = new Pupil[1000];    // In release code, you'd definitely not
                                                 // hardcode this, you'd use a List or similar!
 
-            teacher = new Teacher("John Smith", "L5");
+            teacher = new Teacher("John Jones", "L5");
 
             teacher.eyeColour = Teacher.colour.BLUE;
 
