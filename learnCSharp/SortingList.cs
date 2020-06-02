@@ -48,7 +48,7 @@ namespace learnCSharp
                 if (list[i] == 0)
                 {
                     /* There is nothing in this place, so just take it */
-                    list[_] = value;
+                    // list[_] = value;
                     break;
                 }
                 if (value < list[i])

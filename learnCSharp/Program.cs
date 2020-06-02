@@ -7,11 +7,22 @@ namespace learnCSharp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(String[] args)
         {
             Console.WriteLine("Hello World!");
 
-            schoolDirectory();
+            binaryTree();
+        }
+
+        static void binaryTree()
+        {
+            var bTree = new BinaryTree<int>(5);
+
+            bTree.Add(10);
+
+            bTree.Add(3);
+
+            bTree.InOrder();
         }
 
         static void schoolDirectory()
@@ -52,7 +63,7 @@ namespace learnCSharp
             l = null;
         }
 
-        static void Sort(string[] args)
+        static void Sort()
         {
             char response;
 
