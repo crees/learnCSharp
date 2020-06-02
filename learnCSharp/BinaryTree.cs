@@ -36,7 +36,25 @@ public class BinaryTree<T> where T : IComparable
         // If data is greater than this.data
         if (data.CompareTo(this.data) > 0)
         {
-            
+            if (this.right == null)
+            {
+                this.right = new BinaryTree<T>(data);
+            }
+            else
+            {
+                this.right.Add(data);
+            }
+        }
+        else
+        {
+            if (this.left == null)
+            {
+                this.left = new BinaryTree<T>(data);
+            }
+            else
+            {
+                this.left.Add(data);
+            }
         }
     }
 
@@ -67,8 +85,19 @@ public class BinaryTree<T> where T : IComparable
         // If they're equal
         if (data.CompareTo(this.data) == 0)
         {
-
+            return true;
         }
-
+        else if (data.CompareTo(this.data) > 0)
+        {
+            if (this.right != null)
+            {
+                return this.right.Exists(data);
+            }
+        }
+        else if (this.left != null)
+        {
+            return this.left.Exists(data);
+        }
+        return false;
     }
 }
