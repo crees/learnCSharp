@@ -9,10 +9,10 @@
 /// have a BinaryTree of ints, strings or even Persons.  Have a look
 /// in Program.cs for how that works.
 /// </summary>
-public class BinaryTree<T>
+public class BinaryTree<T> where T : IComparable
 {
-    BinaryTree<T> left, right;
-    T data;
+    private BinaryTree<T> left, right;
+    readonly T data;
 
     public BinaryTree(T data)
     {
@@ -26,12 +26,18 @@ public class BinaryTree<T>
     /// 
     /// Of course, if data is *greater* than the current value, it goes on the right, otherwise on the left.  What if it's equal?
     /// 
+    /// You have to use the .CompareTo method, as illustrated, as we have a generic method.
+    /// 
     /// If data is already there, you'll need to add to that one.  For example, if left != null, then left.Add(data)
     /// </summary>
     /// <param name="data"></param>
     public void Add(T data)
     {
-
+        // If data is greater than this.data
+        if (data.CompareTo(this.data) > 0)
+        {
+            
+        }
     }
 
     /// <summary>
@@ -52,13 +58,17 @@ public class BinaryTree<T>
     }
 
     /// <summary>
-    /// 
+    /// You'll need to recurse through the tree; this is a binary search.
     /// </summary>
     /// <param name="data"></param>
     /// <returns>true if data is in the tree, false if it's not</returns>
     public bool Exists(T data)
     {
+        // If they're equal
+        if (data.CompareTo(this.data) == 0)
+        {
 
+        }
 
     }
 }
