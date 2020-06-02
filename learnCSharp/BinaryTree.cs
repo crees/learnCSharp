@@ -57,6 +57,16 @@ public class BinaryTree<T> where T : IComparable
         }
     }
 
+    public void PreOrder()
+    {
+
+    }
+
+    public void PostOrder()
+    {
+
+    }
+
     /// <summary>
     /// You'll need to recurse through the tree; this is a binary search.
     /// </summary>
