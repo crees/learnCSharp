@@ -11,7 +11,18 @@ namespace learnCSharp
         {
             Console.WriteLine("Hello World!");
 
-            binaryTree();
+            graph();
+        }
+
+        static void graph()
+        {
+            GraphNode<String> london = new GraphNode<String>("London");
+            GraphNode<String> edinburgh = new GraphNode<String>("Edinburgh");
+
+            london.ConnectTo(edinburgh, 650);
+
+            // What is London connected to first?
+            Console.Out.WriteLine(london.Edges[0].OtherNode(london).Data);
         }
 
         static void binaryTree()

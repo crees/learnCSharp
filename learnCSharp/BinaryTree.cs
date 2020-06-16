@@ -74,6 +74,7 @@ public class BinaryTree<T> where T : IComparable
     /// <returns>true if data is in the tree, false if it's not</returns>
     public bool Exists(T data)
     {
+        return false;
         // If they're equal
         if (data.CompareTo(this.data) == 0)
         {
