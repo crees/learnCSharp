@@ -44,16 +44,33 @@ namespace learnCSharp
         {
             /* Return null if you can't find the item */
 
-            /* make this! */
+            var node = this.first;
 
-            return null;
+            while (node.data != data)
+            {
+                if (node.next == null)
+                {
+                    return null;
+                }
+                node = node.next;
+            }
+
+            return node;
         }
 
+        /// <summary>
+        /// Errors if the data doesn't exist in the list.
+        /// </summary>
+        /// <param name="data">Value of item to delete</param>
+        /// <throws>NullReferenceException</throws>
         public void deleteItem(int data)
         {
             ListNode n;
 
             n = this.findItem(data);
+
+            if (n == null)
+                throw new NullReferenceException();
 
             n.previous.next = n.next;
             n.next.previous = n.previous;

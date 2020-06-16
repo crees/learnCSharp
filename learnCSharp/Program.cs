@@ -16,13 +16,20 @@ namespace learnCSharp
 
         static void graph()
         {
-            GraphNode<String> london = new GraphNode<String>("London");
-            GraphNode<String> edinburgh = new GraphNode<String>("Edinburgh");
+            var london = new GraphNode<String>("London");
+            var edinburgh = new GraphNode<String>("Edinburgh");
+            var leeds = new GraphNode<String>("Leeds");
+            var glasgow = new GraphNode<String>("Glasgow");
 
             london.ConnectTo(edinburgh, 650);
+            london.ConnectTo(leeds, 400);
+            edinburgh.ConnectTo(glasgow);
+
 
             // What is London connected to first?
-            Console.Out.WriteLine(london.Edges[0].OtherNode(london).Data);
+            //Console.Out.WriteLine(london.Edges[0].OtherNode(london).Data);
+
+            london.DepthFirstTraversalIterative();
         }
 
         static void binaryTree()
@@ -34,6 +41,8 @@ namespace learnCSharp
             bTree.Add(3);
 
             bTree.InOrder();
+
+            bTree.Exists(5);
         }
 
         static void schoolDirectory()
@@ -63,6 +72,14 @@ namespace learnCSharp
             l.append(5);
             l.append(10);
 
+            try
+            {
+                l.deleteItem(6);
+            }
+            catch (NullReferenceException e)
+            {
+                // Do nothing, we're happy
+            }
 
             /* l.printAll() */
 

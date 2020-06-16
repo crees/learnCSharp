@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -14,6 +15,7 @@ namespace learnCSharp
         public GraphNode(T data)
         {
             this.Data = data;
+            this.Edges = new List<GraphEdge<T>>();
         }
 
         /// <summary>
@@ -21,7 +23,7 @@ namespace learnCSharp
         /// </summary>
         /// <param name="otherNode">Node to connect</param>
         /// <param name="weight">Perhaps distance in km?</param>
-        public void ConnectTo(GraphNode<T> otherNode, int weight)
+        public void ConnectTo(GraphNode<T> otherNode, int weight = 0)
         {
             Edges.Add(new GraphEdge<T>(this, otherNode, weight));
 
@@ -42,17 +44,65 @@ namespace learnCSharp
             return false;
         }
 
-        // This is an example of function overloading- same name, different argument lists.
-        /// <summary>
-        /// This connects with a weight of zero
-        /// </summary>
-        /// <param name="otherNode">Node to connect this node to</param>
-        public void ConnectTo(GraphNode<T> otherNode)
+
+        public void DepthFirstTraversalIterative()
         {
-            Edges.Add(new GraphEdge<T>(this, otherNode, 0));
+            var stack = new Stack<GraphNode<T>>();
+            var visited = new List<GraphNode<T>>();
+
+            stack.Push(this);
+
+            while (stack.Count > 0)
+            {
+                var node = stack.Pop();
+
+                if (!visited.Contains(node))
+                {
+                    visited.Add(node);
+                    Console.Out.WriteLine(node.Data);
+                }
+
+                // Get all of the adjacent vertices, and push to the stack
+                foreach (var edge in node.Edges)
+                {
+                    var newNode = edge.OtherNode(node);
+                    
+                    if (!visited.Contains(newNode))
+                    {
+                        stack.Push(newNode);
+                    }
+                }
+            }
         }
 
-        
+        public void RecursiveDepthFirst(List<GraphNode<T>> visited = null)
+        {
+            // This is the first calling, we need to make the List
+            if (visited == null)
+            {
+                visited = new List<GraphNode<T>>();
+            }
+
+            // Unusually for recursion, we want call by reference as this list is the one that records all the visited ones.
+
+            if (!visited.Contains(this))
+            {
+                visited.Add(this);
+                Console.Out.WriteLine(this.Data);
+            }
+
+            foreach (var edge in this.Edges)
+            {
+                var node = edge.OtherNode(this);
+                if (!visited.Contains(node))
+                {
+                    node.RecursiveDepthFirst(visited);
+                }
+            }
+
+            
+        }
+
     }
 
     class GraphEdge<T>
